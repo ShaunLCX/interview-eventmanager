@@ -36,15 +36,6 @@ public class DefaultEventManagerTest
     }
     
     @Test
-    public void Task1()
-    {
-        EventListenerMock eventListenerMock = new EventListenerMock(new Class[]{SubEvent.class});
-        eventManager.registerListener("some.key", eventListenerMock);
-        eventManager.publishEvent(new SubEvent(this));
-        assertTrue(eventListenerMock.isCalled());
-    }
-
-    @Test
     public void testUnregisterListener()
     {
         EventListenerMock eventListenerMock = new EventListenerMock(new Class[]{SimpleEvent.class});
@@ -120,6 +111,17 @@ public class DefaultEventManagerTest
     }
     
     @Test
+    public void Task1()
+    {
+    	SubEvent event=new SubEvent(new SimpleEvent(this).getSource());
+        EventListenerMock eventListenerMock = new EventListenerMock(new Class[]{SubEvent.class});
+        eventManager.registerListener("some.key", eventListenerMock);
+        eventManager.publishEvent(event);
+        assertTrue(eventListenerMock.isCalled());
+    }
+    
+    
+    @Test
     public void Task2()
     {
     	EventListenerMock eventListenerMock = new EventListenerMock(null);
@@ -127,9 +129,22 @@ public class DefaultEventManagerTest
     	if(eventListenerMock.getHandledEventClasses()==null) 
     	{
     		
-    		eventManager.specialLister(null, null);
-    		
+    		eventManager.specialLister(null, null);	
     	}
         
     }
+    
+    @Test
+    public void Task3()
+    {
+    	SimpleEvent event=new SubEvent(new SimpleEvent(this).getSource());
+        EventListenerMock eventListenerMock = new EventListenerMock(new Class[]{SubEvent.class});
+        eventManager.registerListener("some.key", eventListenerMock);
+        eventManager.publishEvent(event);
+        assertTrue(eventListenerMock.isCalled());
+    }
+    
+
+    
+    
 }
