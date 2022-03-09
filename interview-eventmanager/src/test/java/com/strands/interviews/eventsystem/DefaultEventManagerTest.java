@@ -34,6 +34,15 @@ public class DefaultEventManagerTest
         eventManager.publishEvent(new SimpleEvent(this));
         assertFalse(eventListenerMock.isCalled());
     }
+    
+    @Test
+    public void Task1()
+    {
+        EventListenerMock eventListenerMock = new EventListenerMock(new Class[]{SubEvent.class});
+        eventManager.registerListener("some.key", eventListenerMock);
+        eventManager.publishEvent(new SubEvent(this));
+        assertTrue(eventListenerMock.isCalled());
+    }
 
     @Test
     public void testUnregisterListener()
@@ -108,5 +117,19 @@ public class DefaultEventManagerTest
         catch (IllegalArgumentException ex)
         {
         }
+    }
+    
+    @Test
+    public void Task2()
+    {
+    	EventListenerMock eventListenerMock = new EventListenerMock(null);
+    	
+    	if(eventListenerMock.getHandledEventClasses()==null) 
+    	{
+    		
+    		eventManager.specialLister(null, null);
+    		
+    	}
+        
     }
 }

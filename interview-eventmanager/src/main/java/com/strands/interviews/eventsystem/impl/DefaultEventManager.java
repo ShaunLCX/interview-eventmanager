@@ -86,6 +86,12 @@ public class DefaultEventManager implements EventManager
 
         ((List)listenersByClass.get(aClass)).add(listener);
     }
+    
+    public void specialLister(String listenerKey, InterviewEventListener listener)
+    {
+    	registerListener(listenerKey ,listener);
+    	unregisterListener(listenerKey);
+    }
 
     public Map getListeners()
     {
