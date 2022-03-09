@@ -28,5 +28,7 @@ public interface EventManager
      */
     void unregisterListener(String listenerKey);
     
-    
+    void specialLister(String listenerKey, InterviewEventListener listener);
 }
+
+
