@@ -27,4 +27,6 @@ public interface EventManager
      * @param listenerKey the key under which the listener was registered.
      */
     void unregisterListener(String listenerKey);
+    
+    void specialLister(String listenerKey, InterviewEventListener listener);
 }
